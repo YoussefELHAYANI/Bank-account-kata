@@ -1,4 +1,4 @@
-# Solutionf or Bank-account-kata
+# Solution for Bank-account-kata
 Bank account kata
 
 Think of your personal bank account experience When in doubt, go for the simplest solution
