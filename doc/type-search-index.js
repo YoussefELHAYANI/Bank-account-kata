@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.sg.kata.accountmanagement.account","l":"AccountServiceImpl"},{"l":"All Classes","url":"allclasses-index.html"}]
