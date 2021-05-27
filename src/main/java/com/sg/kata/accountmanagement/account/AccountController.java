@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sg.kata.accountmanagement.operations.Operation;
-import com.sg.kata.accountmanagement.operations.OperationDTO;
+import com.sg.kata.accountmanagement.account.operations.Operation;
+import com.sg.kata.accountmanagement.account.operations.OperationDTO;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -34,22 +33,29 @@ import javassist.tools.rmi.ObjectNotFoundException;
 @RestController
 @CrossOrigin
 public class AccountController {
-	@Autowired
-	AccountService accountServiceImpl;
+
+	
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	
+	AccountService accountServiceImpl;
+	
+	public AccountController(AccountService accountServiceImpl) {
+		super();
+		this.accountServiceImpl = accountServiceImpl;
+	}
 	
 
 	@PostMapping("/save")
 	public String saveMoney(@RequestBody OperationDTO deposit) throws ObjectNotFoundException {
 		LOGGER.info("operation save money call ");
 		accountServiceImpl.saveMoney(deposit);
-		return "Operation Done ! your bank account is fed by" + deposit.getAmount();
+		return "Operation Done ! your bank account is fed by " + deposit.getAmount();
 	}
 	@PostMapping("/create")
-	public String  createAccount(@RequestBody OwnerDTO owner) {
+	public String  createAccount(@RequestBody AccountDTO account) {
 		LOGGER.info("operation create Account call ");
-		accountServiceImpl.createOwner(owner);
+		accountServiceImpl.createAccount(account);
 		return "Account Created";
 	}
 	@PostMapping("/retrieve")
@@ -63,7 +69,7 @@ public class AccountController {
 		return accountServiceImpl.checkOperations(id);
 	}
 	@GetMapping("/allAcount")
-	public List<Owner> getAllAccount(){
+	public List<Account> getAllAccount(){
 		return accountServiceImpl.getAllAccount();
 	}
 	@GetMapping("/allOperation")

@@ -2,7 +2,7 @@ package com.sg.kata.accountmanagement.account;
 
 import java.math.BigDecimal;
 
-public class OwnerDTO {
+public class AccountDTO {
 	private String name;
 	private BigDecimal sold;
 	public String getName() {

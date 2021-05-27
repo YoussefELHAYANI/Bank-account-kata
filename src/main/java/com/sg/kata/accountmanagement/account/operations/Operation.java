@@ -1,4 +1,4 @@
-package com.sg.kata.accountmanagement.operations;
+package com.sg.kata.accountmanagement.account.operations;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,10 +12,10 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sg.kata.accountmanagement.account.Owner;
+import com.sg.kata.accountmanagement.account.Account;
 
 /**
- * operation has one owner
+ * operation has one account
  * 
  * @author Youssef EL HAYANI
  *
@@ -33,9 +33,9 @@ public class Operation {
 	private LocalDateTime date ;
 	private BigDecimal balance;
 	@ManyToOne
-	@JoinColumn(name="owner_id", nullable=false)
+	@JoinColumn(name="account_id", nullable=false)
 	@JsonBackReference
-	private Owner owner;
+	private Account account;
 
 	public BigDecimal getAmount() {
 		return amount;
@@ -77,12 +77,12 @@ public class Operation {
 		this.type = type;
 	}
 
-	public Owner getOwner() {
-		return owner;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getId() {

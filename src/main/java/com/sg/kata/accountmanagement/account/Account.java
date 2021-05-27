@@ -12,25 +12,25 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sg.kata.accountmanagement.operations.Operation;
+import com.sg.kata.accountmanagement.account.operations.Operation;
 
 /**
- * Entity owner have one or many operation(s)
+ * Entity Account have one or many operation(s)
  * 
- * 
+ * Note:  amount is represented by The BigDecimal (this class is designed around accuracy and has an almost infinite size).
  * @author Youssef EL HAYANI
  *
  */
 
 @Entity
-public class Owner {
+public class Account {
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String id;
 	private String name;
 	private BigDecimal sold;
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<Operation> operation;
 	

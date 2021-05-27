@@ -1,4 +1,4 @@
-package com.sg.kata.accountmanagement.operations;
+package com.sg.kata.accountmanagement.account.operations;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
